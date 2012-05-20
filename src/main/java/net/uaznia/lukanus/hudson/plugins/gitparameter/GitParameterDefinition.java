@@ -215,7 +215,7 @@ public class GitParameterDefinition
                         project.getSomeWorkspace(), TaskListener.NULL,
                         environment, new String());
 
-                newgit.fetch();
+                newgit.fetch(repository);
 
                 if (type.equalsIgnoreCase(PARAMETER_TYPE_REVISION)) {
                     revisionMap = new HashMap<String, String>();

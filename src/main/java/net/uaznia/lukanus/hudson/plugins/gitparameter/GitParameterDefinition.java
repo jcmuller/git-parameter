@@ -2,6 +2,7 @@ package net.uaznia.lukanus.hudson.plugins.gitparameter;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.cli.CLICommand;
 import hudson.model.AbstractProject;
 import hudson.model.Hudson;
 import hudson.model.ParameterDefinition;
@@ -14,6 +15,7 @@ import hudson.plugins.git.IGitAPI;
 import hudson.plugins.git.Revision;
 import hudson.scm.SCM;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -102,6 +104,14 @@ public class GitParameterDefinition
         }
 
         GitParameterValue gitParameterValue = new GitParameterValue(jO.getString("name"), strValue);
+        return gitParameterValue;
+    }
+
+    @Override
+    public final ParameterValue createValue(CLICommand command, String value) throws
+        IOException, InterruptedException
+    {
+        GitParameterValue gitParameterValue = new GitParameterValue(getName(), value);
         return gitParameterValue;
     }
 
